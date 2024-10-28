@@ -6,10 +6,13 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -78,15 +81,55 @@ fun BasicBoxExample(name: String, modifier: Modifier = Modifier){
                 .padding(8.dp)            //Margen
                 .background(Color.Red, shape = RoundedCornerShape(9.dp))
         )
-    }
+    }//Fin Box
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.Start
+    ) {
+        Text("A", Modifier.background(Color.Red))
+        Text("B", Modifier.background(Color.Green))
+        Text("C", Modifier.background(Color.Blue))
+    }//Fin Row
 }//Fin BasicBoxExample
 
 @Composable
-fun AdaptiveBoxExample(name: String, modifier: Modifier = Modifier){
-    BoxWithConstraints {
+fun AdaptiveBoxSize(name: String, modifier: Modifier = Modifier) {
+    BoxWithConstraints(
         modifier = modifier.fillMaxSize()
+    ) {
+        val screenWidth = maxWidth
+
+        val sizeCategory = when {
+            screenWidth < 400.dp -> "Small"
+            screenWidth < 600.dp -> "Medium"
+            else -> "Large"
+        }
+        val boxSize = when (sizeCategory) {
+            "Small" -> screenWidth * 0.6f
+            "Medium" -> screenWidth * 0.5f
+            else -> screenWidth * 0.4f
+        }
+        Box(
+            modifier
+                .size(boxSize)
+                .background(Color.Cyan, shape = RoundedCornerShape(16.dp))
+                .align(Alignment.Center)
+        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                verticalAlignment = Alignment.Bottom
+
+            ) {
+                Text("A", Modifier.size(50.dp, 100.dp).background(Color.Red))
+                Text("B", Modifier.size(50.dp, 100.dp).background(Color.Green))
+                Text("C", Modifier.size(50.dp, 100.dp).background(Color.Blue))
+            }//Fin Row
+        }
     }
 }//Fin AdaptiveBoxExample
+
+
 
 // Preview nos permite ver las cosas de interfaz de usuario
 @Preview(showBackground = true)
@@ -96,6 +139,7 @@ fun GreetingPreview() {
         Column {
             Greeting("Pepe")
             BasicBoxExample("David")
+            AdaptiveBoxSize("")
         }
     }
 }//Fin GreetingPreview
