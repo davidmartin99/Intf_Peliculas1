@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.animation.expandVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -30,6 +31,7 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
@@ -136,9 +138,18 @@ fun AdaptiveBoxSize(name: String, modifier: Modifier = Modifier) {
                 verticalAlignment = Alignment.Bottom
 
             ) {
-                Text("A", Modifier.size(50.dp, 100.dp).background(Color.Red))
-                Text("B", Modifier.size(50.dp, 100.dp).background(Color.Green))
-                Text("C", Modifier.size(50.dp, 100.dp).background(Color.Blue))
+                Text("A",
+                    Modifier
+                        .size(50.dp, 100.dp)
+                        .background(Color.Red))
+                Text("B",
+                    Modifier
+                        .size(50.dp, 100.dp)
+                        .background(Color.Green))
+                Text("C",
+                    Modifier
+                        .size(50.dp, 100.dp)
+                        .background(Color.Blue))
             }//Fin Row
         }
     }
@@ -177,8 +188,16 @@ fun BasicRow(name: String, modifier: Modifier = Modifier) {
 /**
  * EJERCICIO DE CLASE
  */
+//Variable de texto
+val textShadow = Shadow(
+    color = Color.Gray, // Shadow color
+    offset = Offset(6f, 9f), // Shadow offset
+    blurRadius = 9f // Shadow blur radius
+)
+
 @Composable
 fun Ejercicio1(name: String, modifier: Modifier = Modifier){
+
     Box(
         modifier = Modifier
             .fillMaxSize()  // Hacer que la Box ocupe toda la pantalla
@@ -197,8 +216,15 @@ fun Ejercicio1(name: String, modifier: Modifier = Modifier){
                 modifier = Modifier
                     .height(200.dp)
                     .width(500.dp)
-                    .background(Color.LightGray, shape = RoundedCornerShape(16.dp)) //Redondear Fondo
-                    .border(6.dp, Color.Magenta, shape = RoundedCornerShape(16.dp))   //Redondear Bordes
+                    .background(
+                        Color.LightGray,
+                        shape = RoundedCornerShape(16.dp)
+                    ) //Redondear Fondo
+                    .border(
+                        6.dp,
+                        Color.Magenta,
+                        shape = RoundedCornerShape(16.dp)
+                    )   //Redondear Bordes
                     .padding(16.dp)
             ){
 
@@ -210,48 +236,93 @@ fun Ejercicio1(name: String, modifier: Modifier = Modifier){
 
             //Row Abajo
             Row(
+
                 modifier = Modifier
-                    .height(200.dp)
+                    .height(300.dp)
                     .width(500.dp)
-                    .background(Color.LightGray, shape = RoundedCornerShape(16.dp)) //Redondear Fondo
-                    .border(6.dp, Color.Cyan, shape = RoundedCornerShape(16.dp))   //Redondear Bordes
-                    .padding(16.dp)
+                    .background(
+                        Color.LightGray,
+                        shape = RoundedCornerShape(16.dp)
+                    ) //Redondear Fondo
+                    .border(
+                        6.dp,
+                        Color.Cyan,
+                        shape = RoundedCornerShape(16.dp)
+                    )   //Redondear Bordes
+                    .padding(16.dp),
+                horizontalArrangement = Arrangement.Start
             ){
+                // 1ºBox
                 Box(
                     modifier = Modifier
-                        .size(100.dp, 25.dp) // Set size for the inner Box
-                        .background(Color.Yellow), //Redondear FondohorizontalAlignment = Alignment.CenterHorizontally // Center content horizontally
-                    contentAlignment = Alignment.TopStart // Align content to the top left
+                        .size(100.dp, 100.dp)
+                        .background(Color.Red), //Redondear FondohorizontalAlignment = Alignment.CenterHorizontally // Center content horizontally
+                    contentAlignment = Alignment.Center
 
                 ){
-                    //Row1  A B
-                    Row (
+                    Text(
+                        "Text1",
+                        color = Color.Blue, // Change text color to Blue
+                        fontSize = 25.sp, // Increase font size
+                        fontWeight = FontWeight.Bold, // Make text bold
                         modifier = Modifier
-                        .fillMaxSize()  // Ensure the Column takes up all available space
-                    ) {
-                        Text("A", Modifier.size(50.dp, 25.dp).background(Color.Red))
-                        Text("B", Modifier.size(50.dp, 25.dp).background(Color.Green))
-                    }//Fin Row1
+                            .padding(1.dp)
+                            .padding(bottom = 40.dp)
+                    )
 
-                }//Fin box 3.1
+                    // Add padding to position B below A
+                    Text(
+                        "Text2",
+                        color = Color.Blue, // Change text color to Blue
+                        fontSize = 25.sp, // Increase font size
+                        fontWeight = FontWeight.Bold, // Make text bold
+                        modifier = Modifier
+                            .padding(1.dp)
+                            .padding(top = 40.dp)
+                    )
 
+                }//Fin 1ºBox
+
+                // 2ºBox
                 Box(
                     modifier = Modifier
-                        .size(100.dp, 25.dp) // Set size for the inner Box
-                        .background(Color.Yellow), //Redondear FondohorizontalAlignment = Alignment.CenterHorizontally // Center content horizontally
-                    contentAlignment = Alignment.TopStart // Align content to the top left
+                        .size(100.dp, 100.dp)
+                        .background(Color.Black), //Redondear FondohorizontalAlignment = Alignment.CenterHorizontally // Center content horizontally
+                    contentAlignment = Alignment.Center
 
                 ){
-                    //Row1  A B
-                    Row (
+                    Text(
+                        "Text3",
                         modifier = Modifier
-                            .fillMaxSize()  // Ensure the Column takes up all available space
-                    ) {
-                        Text("C", Modifier.size(50.dp, 25.dp).background(Color.Red))
-                        Text("D", Modifier.size(50.dp, 25.dp).background(Color.Green))
-                    }//Fin Row1
+                            .padding(1.dp)
+                            .padding(bottom = 40.dp),
+                        style = TextStyle(
+                            color = Color.Red, // Text color
+                            fontSize = 25.sp, // Font size
+                            fontWeight = FontWeight.Bold, // Font weight
+                            shadow = textShadow // Apply shadow
+                        )
 
-                }//Fin box 3.2
+                    )
+
+                    // Add padding to position B below A
+                    Text(
+                        "Text4",
+                        modifier = Modifier
+                            .padding(1.dp)
+                            .padding(top = 40.dp),
+
+                        style = TextStyle(
+                            color = Color.Red, // Text color
+                            fontSize = 25.sp, // Font size
+                            fontWeight = FontWeight.Bold, // Font weight
+                            shadow = textShadow // Apply shadow
+                        )
+
+                    )
+
+                }//Fin 2ºBox
+
 
             }//Fin Box 3
 
@@ -276,7 +347,5 @@ fun GreetingPreview() {
          *         }
          *         //BasicRow("")
          */
-
-
     }
 }//Fin GreetingPreview
