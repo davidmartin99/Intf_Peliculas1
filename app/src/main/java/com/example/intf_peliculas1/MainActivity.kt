@@ -219,14 +219,86 @@ fun Ejercicio1(name: String, modifier: Modifier = Modifier){
                     .background(
                         Color.LightGray,
                         shape = RoundedCornerShape(16.dp)
-                    ) //Redondear Fondo
+                    ) // Rounded background
                     .border(
                         6.dp,
                         Color.Magenta,
                         shape = RoundedCornerShape(16.dp)
-                    )   //Redondear Bordes
-                    .padding(16.dp)
+                    ) // Rounded borders
+                    .padding(40.dp),
+                horizontalArrangement = Arrangement.SpaceBetween, // Space between the boxes
+                verticalAlignment = Alignment.CenterVertically // Align vertically to the center
             ){
+                // 1ºBox
+                Box(
+                    modifier = Modifier
+                        .size(100.dp, 100.dp)
+                        .background(Color.Red), //Redondear FondohorizontalAlignment = Alignment.CenterHorizontally // Center content horizontally
+                    contentAlignment = Alignment.Center
+
+                ){
+                    Text(
+                        "Hola",
+                        color = Color.Blue, // Change text color to Blue
+                        fontSize = 25.sp, // Increase font size
+                        fontWeight = FontWeight.Bold, // Make text bold
+                        modifier = Modifier
+                            .padding(1.dp)
+                            .padding(bottom = 40.dp)
+                    )
+
+                    // Add padding to position B below A
+                    Text(
+                        "Adios",
+                        color = Color.Blue, // Change text color to Blue
+                        fontSize = 25.sp, // Increase font size
+                        fontWeight = FontWeight.Bold, // Make text bold
+                        modifier = Modifier
+                            .padding(1.dp)
+                            .padding(top = 40.dp)
+                    )
+
+                }//Fin 1ºBox
+
+                // 2ºBox
+                Box(
+                    modifier = Modifier
+                        .size(100.dp, 100.dp)
+                        .background(Color.Black), //Redondear FondohorizontalAlignment = Alignment.CenterHorizontally // Center content horizontally
+                    contentAlignment = Alignment.Center
+
+                ){
+                    Text(
+                        "Hello",
+                        modifier = Modifier
+                            .padding(1.dp)
+                            .padding(bottom = 40.dp),
+                        style = TextStyle(
+                            color = Color.Red, // Text color
+                            fontSize = 25.sp, // Font size
+                            fontWeight = FontWeight.Bold, // Font weight
+                            shadow = textShadow // Apply shadow
+                        )
+
+                    )
+
+                    // Add padding to position B below A
+                    Text(
+                        "Bye",
+                        modifier = Modifier
+                            .padding(1.dp)
+                            .padding(top = 40.dp),
+
+                        style = TextStyle(
+                            color = Color.Red, // Text color
+                            fontSize = 25.sp, // Font size
+                            fontWeight = FontWeight.Bold, // Font weight
+                            shadow = textShadow // Apply shadow
+                        )
+
+                    )
+
+                }//Fin 2ºBox
 
 
             }//Fin Box 2
