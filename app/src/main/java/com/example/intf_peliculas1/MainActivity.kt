@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.animation.expandVertically
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -30,11 +31,14 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import coil.compose.rememberImagePainter
 import com.example.intf_peliculas1.ui.theme.Intf_Peliculas1Theme
 
 class MainActivity : ComponentActivity() {
@@ -395,13 +399,79 @@ fun Ejercicio1(name: String, modifier: Modifier = Modifier){
 
                 }//Fin 2ºBox
 
-
             }//Fin Box 3
+
+            // Spacer to create space between the boxes
+            Spacer(modifier = Modifier.height(40.dp)) // Adjust height for spacing
+
+            //Row 3 con imagen
+            Row(
+                modifier = Modifier
+                    .height(500.dp)
+                    .width(700.dp)
+                    .background(
+                        Color.LightGray,
+                        shape = RoundedCornerShape(40.dp)
+                    ) //Redondear Fondo
+                    .border(
+                        9.dp,
+                        Color.Black,
+                        shape = RoundedCornerShape(40.dp)
+                    )   //Redondear Bordes
+                    .padding(16.dp),
+                horizontalArrangement = Arrangement.Start
+            ){
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp)
+                ) {
+                    LocalImage(modifier = Modifier.weight(1f))  // First image (local)
+                    Spacer(modifier = Modifier.width(23.dp))  // Space between images
+                    RemoteImage(modifier = Modifier.weight(1f)) // Second image (remote URL)
+                }
+            }//Fin 3ºRow
 
         }//Fin Columna1
 
     }//Fin Box1
 }//Fin Ejercicio1
+
+@Composable
+fun LocalImage(modifier: Modifier = Modifier) {
+    Box(
+        modifier = modifier
+            .size(100.dp), // Size for the local image
+        contentAlignment = Alignment.TopStart
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.ejemploimg), // Local resource image
+            contentDescription = "Imagen desde recursos locales", // Description
+            modifier = Modifier.fillMaxSize(), // Fill the available space
+            contentScale = ContentScale.Crop
+        )
+    }
+}
+
+@Composable
+fun RemoteImage(modifier: Modifier = Modifier) {
+    Box(
+        modifier = modifier
+            .size(150.dp), // Size for the remote image
+        contentAlignment = Alignment.TopEnd
+    ) {
+        Image(
+            painter = rememberImagePainter(""), // Image from a URL
+            contentDescription = "Imagen desde URL", // Description
+            modifier = Modifier.fillMaxSize(), // Fill the available space
+            contentScale = ContentScale.Crop
+        )
+    }
+}
+@Composable
+fun AsyncImage(model: String) {
+
+}
 
 
 
