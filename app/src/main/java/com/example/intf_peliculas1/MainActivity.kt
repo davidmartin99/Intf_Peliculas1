@@ -421,14 +421,14 @@ fun Ejercicio1(name: String, modifier: Modifier = Modifier){
                     .padding(16.dp),
                 horizontalArrangement = Arrangement.Start
             ){
-                Row(
+                Box(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(16.dp)
                 ) {
-                    LocalImage(modifier = Modifier.weight(1f))  // First image (local)
+                    LocalImage(modifier = Modifier.width(93.dp))  // First image (local)
                     Spacer(modifier = Modifier.width(23.dp))  // Space between images
-                    RemoteImage(modifier = Modifier.weight(1f)) // Second image (remote URL)
+                    RemoteImage(modifier = Modifier.width(46.dp)) // Second image (remote URL)
                 }
             }//Fin 3ºRow
 
